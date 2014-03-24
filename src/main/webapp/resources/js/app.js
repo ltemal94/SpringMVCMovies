@@ -18,5 +18,5 @@ angularMovieApp.config(function($routeProvider) {
         })
         .otherwise({
             redirectTo: '/home'
-        });
+});
 });

@@ -14,28 +14,29 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/server/api/movies")
+@RequestMapping("/server/api")
 public class MovieController {
 
-@Autowired
-private MovieService movieService;
+    @Autowired
+    private MovieService movieService;
 
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/movies.json", method = RequestMethod.GET)
     public @ResponseBody
     List<Movie> getMoviesList() {
+
         return movieService.fetchMoviesList();
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/movies", method = RequestMethod.POST)
     public @ResponseBody void addMovie(@RequestBody Movie movie){
         movieService.addMovie(movie);
     }
 
 
-    @RequestMapping(value="/{movieId}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/movies/{movieId}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteMovie(@PathVariable("movieId") int movieId) {
         movieService.removeMovie(movieId);
 
@@ -43,14 +44,14 @@ private MovieService movieService;
 
 
 
-    @RequestMapping(value = "/{movieId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/movies/{movieId}", method = RequestMethod.GET)
     public @ResponseBody Movie fetchOneMovie(@PathVariable ("movieId") int movieId) {
         return movieService.fetchOneMovie(movieId);
     }
 
 
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/movies", method = RequestMethod.PUT)
     public @ResponseBody void updateMovie(@RequestBody  Movie aMovie) {
         movieService.updateMovie(aMovie) ;
 
