@@ -16,6 +16,10 @@ angularMovieApp.config(function($routeProvider) {
             templateUrl: 'partials/edit.html',
             controller: 'editMovieController'
         })
+        .when('/shapes', {
+            templateUrl:'partials/shapes.html',
+            controller: 'shapesController'
+        })
         .otherwise({
             redirectTo: '/home'
 });

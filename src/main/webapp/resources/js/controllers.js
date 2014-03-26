@@ -6,6 +6,10 @@ angularMovieApp.controller("homeController" ,function ($scope) {
 
 });
 
+angularMovieApp.controller("shapesController", function ($scope){
+    $scope.user = 'Lynda';
+});
+
 angularMovieApp.controller("moviesController" ,function ($scope, Movie) {
 
     Movie.fetch().success(function(resp){
@@ -22,6 +26,8 @@ angularMovieApp.controller("moviesController" ,function ($scope, Movie) {
     };
 
 });
+
+
 
 angularMovieApp.controller('editMovieController', function($scope, Movie, $routeParams, $location){
 

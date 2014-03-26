@@ -1,0 +1,69 @@
+.btn-custom {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: @btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-custom-base);
+  .user-select(none);
+
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      .tab-focus();
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: @btn-custom-default-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.65);
+    .box-shadow(none);
+  }
+}
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-custom-default {
+  .button-variant(@btn-custom-default-color; @btn-custom-default-bg; @btn-custom-default-border);
+}
+.btn-custom-primary {
+  .button-variant(@btn-custom-primary-color; @btn-custom-primary-bg; @btn-custom-primary-border);
+}
+// Success appears as green
+.btn-custom-success {
+  .button-variant(@btn-custom-success-color; @btn-custom-success-bg; @btn-custom-success-border);
+}
+// Info appears as blue-green
+.btn-custom-info {
+  .button-variant(@btn-custom-info-color; @btn-custom-info-bg; @btn-custom-info-border);
+}
+// Warning appears as orange
+.btn-custom-warning {
+  .button-variant(@btn-custom-warning-color; @btn-custom-warning-bg; @btn-custom-warning-border);
+}
+// Danger and error appear as red
+.btn-custom-danger {
+  .button-variant(@btn-custom-danger-color; @btn-custom-danger-bg; @btn-custom-danger-border);
+}

@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html ng-app="angularMovieApp">
 <head>
-    <title>AngularMovie</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
+   <title>AngularMovie</title>
+   <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css">-->
+   <link rel="stylesheet" href="css/custom-bootstrap.css">
+   <link rel="stylesheet" href="css/app.css">
+   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- barre de navigation -->
-<header class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <section class="container">
-            <a class="brand" href="#/free">AngularMovie</a>
-            <ul class="nav">
-                <li><a href="#/movies">Mes films</a></li>
-            </ul>
-        </section>
 
+<!-- barre de navigation -->
+<header class="navbar navbar-fixed-top bs-docs-nav navbar-inverse " id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/home" class="navbar-brand">AngularMovie</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#/home">Accueil</a>
+                </li>
+                <li>
+                    <a href="#/movies">Mes Films</a>
+                </li>
+                <li>
+                    <a href="#/shapes">Formes</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/home" >Contact us</a></li>
+            </ul>
+        </nav>
     </div>
 </header>
+
+
+
 
 <!-- partie principale -->
 <section class="container" ng-view></section>
