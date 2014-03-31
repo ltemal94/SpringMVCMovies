@@ -3,62 +3,73 @@
         <h1>Hi {{user}} !</h1>
         <p>Your are learning bootstrap + less !</p>
         <p>Have fun !</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Launch demo modal
+        <p><a class="btn btn-custom-info btn-lg" role="button">Learn more</a></p>
+        <button class="btn btn-custom-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Add movie in modal
         </button>
     </div>
 </section>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Ajouter Un film</h4>
+                <h4 class="modal-title" id="myModalLabel">Ajouter un film</h4>
             </div>
             <div class="modal-body">
 
+                <alert-message show="showAlert" title="{{errorTitle}}" message="{{errorMessage}}"></alert-message>
 
-                    <alert-message show="showAlert" title="{{errorTitle}}" message="{{errorMessage}}"></alert-message>
-                    <form name="movieForm" class="form-horizontal">
-                        <div  class="control-group" ng-class="{error : !movieForm.$pristine && movieForm.inputTitle.$error.required}">
-                            <label class="control-label" class="col-md-4">Titre :</label>
-                            <input type="text" name="inputTitle" ng-model="movie.title" autofocus required class="col-md-4">
-                            <span class="help-block" ng-show="!movieForm.$pristine && movieForm.inputTitle.$error.required" class="col-md-4">Le titre est obligatoire</span>
+                <form name="movieForm" class="form-horizontal">
+                    <div class="form-group"ng-class="{error : !movieForm.$pristine && movieForm.inputTitle.$error.required}" >
+                        <label class="col-md-2 control-label">Titre :</label>
+                        <div class="col-md-4">
+                            <input type="text" name="inputTitle" ng-model="movie.title" autofocus required class="form-control">
+                            <span class="help-block" ng-show="!movieForm.$pristine && movieForm.inputTitle.$error.required">Le titre est obligatoire</span>
                         </div>
-                        <div class="control-group" ng-class="{error : movieForm.inputYear.$error.pattern}">
-                            <label class="control-label">Année de sortie :</label>
-                            <input type="text" name="inputYear" ng-model="movie.releaseYear" ng-pattern="/(19|20)\d\d/">
+                    </div>
+                    <div class="form-group" ng-class="{error : movieForm.inputYear.$error.pattern}">
+                        <label class="col-md-2 control-label">Année de sortie :</label>
+                        <div class="col-md-4">
+                            <input type="text" name="inputYear" ng-model="movie.releaseYear" ng-pattern="/(19|20)\d\d/" class="form-control">
                             <span class="help-block" ng-show="movieForm.inputYear.$error.pattern">L'année n'est pas valide</span>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label">Réalisateur : </label>
-                            <input type="text" ng-model="movie.directors">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Réalisateur : </label>
+                        <div class="col-md-4">
+                            <input type="text" ng-model="movie.directors" class="form-control">
                         </div>
-                        <div class="control-group">
-                            <label class="control-label">Acteurs :</label>
-                            <input type="text" ng-model="movie.actors">
+                    </div>
+                    <div class="form-group ">
+                        <label class="col-md-2 control-label">Acteurs :</label>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="movie.actors" class="form-control">
                         </div>
-                        <div class="control-group" ng-class="{error : movieForm.textareaSynopsis.$error.maxlength}">
-                            <label class="control-label">Synopsis :</label>
-                            <input type="text" ng-model="movie.synopsis" name="textareaSynopsis"  ng-maxlength="140">
+                    </div>
+                    <div class="form-group"  ng-class="{error : movieForm.textareaSynopsis.$error.maxlength}">
+                        <label class="col-md-2 control-label">Synopsis :</label>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="movie.synopsis" name="textareaSynopsis"  ng-maxlength="140" class="form-control">
                             <span class="help-block" ng-show="movieForm.textareaSynopsis.$error.maxlength">140 caractères maximum</span>
                         </div>
-                        <div class="control-group" ng-class="{error : movieForm.inputRate.$error.min || movieForm.inputRate.$error.max}">
-                            <label class="control-label">Note :</label>
-                            <input type="number" name="inputRate" placeholder="entre 1 et 5" ng-model="movie.rate" min="0" max="5">
+                    </div>
+                    <div class="form-group" ng-class="{error : movieForm.inputRate.$error.min || movieForm.inputRate.$error.max}" >
+                        <label class="col-md-2 control-label">Note :</label>
+                        <div class="col-md-4">
+                            <input type="number" name="inputRate" placeholder="entre 0 et 5" ng-model="movie.rate" min="0" max="5" class="form-control">
                             <span class="help-block" ng-show="movieForm.inputRate.$error.min">La note doit être supérieure à 0</span>
                             <span class="help-block" ng-show="movieForm.inputRate.$error.max">La note doit être inférieure à 5</span>
-
                         </div>
+                    </div>
                     </form>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button class="btn btn-custom-danger btn-small" ng-click="dismiss();" data-dismiss="modal">Annuler</button>
+                <button class="btn btn-custom-success" ng-click="addMovie(movie)" ng-disabled="movieForm.$invalid">Ajouter</button>
             </div>
         </div>
     </div>

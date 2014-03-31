@@ -50,6 +50,7 @@ angularMovieApp.controller('editMovieController', function($scope, Movie, $route
 
 angularMovieApp.controller("movieFormController" ,function ($scope, Movie) {
 
+
     $scope.showAlert = false;
 
     $scope.addMovie = function(movie){
