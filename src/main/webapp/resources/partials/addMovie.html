@@ -1,0 +1,61 @@
+<header class="page-header">
+    <h1>Ajouter un film</small>
+    </h1>
+</header>
+
+<section>
+    <div>
+
+        <alert-message show="showAlert" title="{{errorTitle}}" message="{{errorMessage}}"></alert-message>
+
+        <form name="movieForm" class="form-horizontal">
+            <div class="form-group"ng-class="{error : !movieForm.$pristine && movieForm.inputTitle.$error.required}" >
+                <label class="col-md-2 control-label">Titre :</label>
+                <div class="col-md-4">
+                    <input type="text" name="inputTitle" ng-model="movie.title" autofocus required class="form-control">
+                    <span class="help-block" ng-show="!movieForm.$pristine && movieForm.inputTitle.$error.required">Le titre est obligatoire</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{error : movieForm.inputYear.$error.pattern}">
+                <label class="col-md-2 control-label">Année de sortie :</label>
+                <div class="col-md-4">
+                    <input type="text" name="inputYear" ng-model="movie.releaseYear" ng-pattern="/(19|20)\d\d/" class="form-control">
+                    <span class="help-block" ng-show="movieForm.inputYear.$error.pattern">L'année n'est pas valide</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Réalisateur : </label>
+                <div class="col-md-4">
+                    <input type="text" ng-model="movie.directors" class="form-control">
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-md-2 control-label">Acteurs :</label>
+                <div class="col-md-6">
+                    <input type="text" ng-model="movie.actors" class="form-control">
+                </div>
+            </div>
+            <div class="form-group"  ng-class="{error : movieForm.textareaSynopsis.$error.maxlength}">
+                <label class="col-md-2 control-label">Synopsis :</label>
+                <div class="col-md-6">
+                    <input type="text" ng-model="movie.synopsis" name="textareaSynopsis"  ng-maxlength="140" class="form-control">
+                    <span class="help-block" ng-show="movieForm.textareaSynopsis.$error.maxlength">140 caractères maximum</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{error : movieForm.inputRate.$error.min || movieForm.inputRate.$error.max}" >
+                <label class="col-md-2 control-label">Note :</label>
+                <div class="col-md-4">
+                    <input type="number" name="inputRate" placeholder="entre 0 et 5" ng-model="movie.rate" min="0" max="5" class="form-control">
+                    <span class="help-block" ng-show="movieForm.inputRate.$error.min">La note doit être supérieure à 0</span>
+                    <span class="help-block" ng-show="movieForm.inputRate.$error.max">La note doit être inférieure à 5</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-lg-offset-2">
+                    <a href="#/movies" class="btn btn-danger btn-small" ng-click="dismiss();">Annuler</a>
+                    <button type="submit" class="btn btn-custom-primary" ng-click="addMovie(movie)" ng-disabled="movieForm.$invalid">Ajouter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

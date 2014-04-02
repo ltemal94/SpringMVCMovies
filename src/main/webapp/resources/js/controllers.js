@@ -48,7 +48,7 @@ angularMovieApp.controller('editMovieController', function($scope, Movie, $route
     };
 });
 
-angularMovieApp.controller("movieFormController" ,function ($scope, Movie) {
+angularMovieApp.controller("movieFormController" ,function ($scope, Movie, $location) {
 
 
     $scope.showAlert = false;
@@ -61,7 +61,35 @@ angularMovieApp.controller("movieFormController" ,function ($scope, Movie) {
                 $scope.movies.push(newMovie);
                 $scope.movie = {};
                 $scope.showAlert = false;
-                $scope.dismiss();
+
+
+            })
+            .error(function(resp, statusCode){
+                // Affichage d'un message d'erreur
+                $scope.errorTitle = 'Erreur ' + statusCode ;
+                $scope.errorMessage = resp.error;
+                $scope.showAlert = true;
+            });
+    };
+});
+
+
+angularMovieApp.controller("addMovieController" ,function ($scope, Movie, $location) {
+
+
+    $scope.showAlert = false;
+
+    $scope.addMovie = function(movie){
+        Movie.create(movie)
+            .success(function(){
+                var newMovie = {};
+                angular.copy(movie, newMovie);
+                $location.path('/movies');
+                $scope.movies.push(newMovie);
+                $scope.movie = {};
+                $scope.showAlert = false;
+
+
             })
             .error(function(resp, statusCode){
                 // Affichage d'un message d'erreur

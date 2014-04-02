@@ -4,17 +4,21 @@
         <p>Your are learning bootstrap + less !</p>
         <p>Have fun !</p>
         <p><a class="btn btn-custom-info btn-lg" role="button">Learn more</a></p>
-        <button class="btn btn-custom-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        <button class="btn btn-custom-primary btn-lg" data-toggle="modal" data-target="#myModal" ng-controller="movieFormController">
             Add movie in modal
         </button>
+        <button class="btn  btn-custom-success"
+                data-toggle="modal"
+                data-target="#addMovieModal"
+                href="partials/remote-page.html">Open Remote Modal</button>
     </div>
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" ng-controller="movieFormController">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Ajouter un film</h4>
             </div>

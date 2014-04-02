@@ -1,19 +1,23 @@
 <!-- header-->
 <header class="page-header">
     <h1>Ma vidéothèque <small>{{movies.length}} films</small>
-        <button class="btn-custom btn-custom-primary" data-toggle="modal" data-target='partials/movie-form-modal.html/#myModal' ng-controller="movieFormController">Ajouter un film</button>
+        <button class="btn-custom btn-custom-primary" data-toggle="modal"  href="partials/movie-form-modal.html" data-target="#addMovieModal" ng-controller="movieFormController">Ajouter un film</button>
+        <a class="btn-custom btn-custom-info" href="#/movie/add" ng-controller="addMovieController">Add a movie</a>
     </h1>
 </header>
-<!-- modal-->
 
 <!-- barre d'actions -->
 <section class="well form-inline">
-    <input class="com-md-5" type="text" ng-model="search" placeholder="Rechercher">
+    <div class="com-md-5">
+    <input  type="text" ng-model="search" placeholder="Rechercher">
+
     <section class="pull-right">
         <button class="btn-custom btn-custom-success" ng-click="tableView = !tableView"><span ng-class="{'glyphicon glyphicon-th-list' : tableView == false , 'glyphicon glyphicon-th' : tableView == true }"></span></button>
         <button class="btn-custom btn-custom-info" ng-click="tri = 'releaseYear'; reverse = !reverse">Trier par année</button>
         <button class="btn-custom btn-custom-info" ng-click="tri = 'title'; reverse = !reverse">Trier par titre</button>
+
     </section>
+    </div>
 </section>
 
 

@@ -20,6 +20,10 @@ angularMovieApp.config(function($routeProvider) {
             templateUrl:'partials/shapes.html',
             controller: 'shapesController'
         })
+        .when('/movie/add',{
+            templateUrl:'partials/addMovie.html',
+            controller:'addMovieController'
+        })
         .otherwise({
             redirectTo: '/home'
 });
